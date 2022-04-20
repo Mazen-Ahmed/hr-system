@@ -90,7 +90,7 @@ const Employees = () => {
 												{item.jobTitleName}
 											</TableCell>
 											<TableCell>{item.status}</TableCell>
-											{/* <TableCell>
+											<TableCell>
 												<FormControl>
 													<RadioGroup name="row-radio-buttons-group">
 														<FormControlLabel
@@ -141,7 +141,7 @@ const Employees = () => {
 														/>
 													</RadioGroup>
 												</FormControl>
-											</TableCell> */}
+											</TableCell>
 										</TableRow>
 									);
 								})}
