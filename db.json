@@ -1,0 +1,22 @@
+{
+	"employees": [
+		{
+			"name": "John",
+			"email": "johndoe@abc.com",
+			"status": "Added",
+			"id": 1
+		},
+		{
+			"name": "Alice",
+			"email": "alicedoe@abc.com",
+			"status": "Added",
+			"id": 2
+		},
+		{
+			"name": "Bob",
+			"email": "bobdoe@abc.com",
+			"status": "Added",
+			"id": 3
+		}
+	]
+}
