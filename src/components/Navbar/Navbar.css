@@ -1,0 +1,26 @@
+.main-nav {
+	height: 90px;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	border-bottom: 1px solid var(--offwhite);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99999999;
+	background-color: #fff;
+}
+
+.main-nav__brand__link {
+	display: flex;
+	align-items: center;
+	color: black;
+	font-family: var(--primary-font);
+	font-size: 18px;
+	position: relative;
+}
+
+.main-nav__brand__link img {
+	margin-right: 15px;
+	padding-bottom: 5px;
+}
