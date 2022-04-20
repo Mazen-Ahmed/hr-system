@@ -46,6 +46,14 @@ const createEmployeeAction = (state, action) => {
 	});
 };
 
+const updateEmployeeStatusAction = (state, action) => {
+	return updateState(state, {
+		employeesList: (state.employeesList[
+			action.payload.id - 1
+		].status = action.payload.status),
+	});
+};
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actions.EMPLOYEES.LOAD:
@@ -56,6 +64,8 @@ const reducer = (state = initialState, action) => {
 			return fetchingFailed(state, action);
 		case actions.CREATE_EMPLOYEE_ACTION:
 			return createEmployeeAction(state, action);
+		case actions.CONFIRM_UPDATE_EMPLOYEE_STATUS_ACTION:
+			return updateEmployeeStatusAction;
 		default:
 			return state;
 	}

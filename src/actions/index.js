@@ -20,6 +20,13 @@ const fetchingFailed = (error) => {
 	};
 };
 
+const createNewEmployeeAction = (payload) => {
+	return {
+		type: employeesActions.default.CREATE_EMPLOYEE_ACTION,
+		payload,
+	};
+};
+
 /* SERVICES */
 /* ---------------------------------------------------*/
 
@@ -35,12 +42,15 @@ export const requestEmployees = () => async (dispatch) => {
 	}
 };
 
-export function createEmployee(employeeData) {
-	return axios.post(
-		"http://localhost:5000/employees",
-		employeeData
-	);
-}
+export const createEmployee = (employeeData) => {
+	return (dispatch) => {
+		axios
+			.post("http://localhost:5000/employees", employeeData)
+			.then(() => {
+				dispatch(createNewEmployeeAction(employeeData));
+			});
+	};
+};
 
 export function updateEmployeeStatus(status, employeeId) {
 	return axios.patch(
@@ -52,19 +62,14 @@ export function updateEmployeeStatus(status, employeeId) {
 /* SERVICES */
 /* ---------------------------------------------------*/
 
-export function createEmployeeAction(employeeData) {
-	return (dispatch) => {
-		createEmployee(employeeData).then((response) => {
-			console.log(response.data);
-		});
-	};
-}
-
-export function confirmUpdateEmployeeStatusAction(status) {
+export function confirmUpdateEmployeeStatusAction(
+	status,
+	id
+) {
 	return {
 		type: employeesActions.default
 			.CONFIRM_UPDATE_EMPLOYEE_STATUS_ACTION,
-		payload: status,
+		payload: { status, id },
 	};
 }
 
@@ -75,7 +80,12 @@ export function updateEmployeeStatusAction(
 	return (dispatch) => {
 		updateEmployeeStatus(status, employeeId).then(
 			(response) => {
-				dispatch(confirmUpdateEmployeeStatusAction(status));
+				dispatch(
+					confirmUpdateEmployeeStatusAction(
+						status,
+						employeeId
+					)
+				);
 			}
 		);
 	};

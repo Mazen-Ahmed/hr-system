@@ -29,13 +29,15 @@ const Employees = () => {
 	const dispatch = useDispatch();
 	// const [status, useStatus] = useState('Added')
 	useEffect(() => {
-		if (!employeesList?.length > 0)
-			dispatch(requestEmployees());
+		if (employeesList) dispatch(requestEmployees());
 	}, []);
 
-	const onRadioChange = (e) => {
+	const onRadioChange = (e, id) => {
 		console.log("radio checked", e.target.value);
-		dispatch(updateEmployeeStatusAction(e.target.value));
+		console.log(id);
+		dispatch(
+			updateEmployeeStatusAction(e.target.value, id)
+		);
 	};
 
 	return (
@@ -101,7 +103,9 @@ const Employees = () => {
 															label="Added"
 															value="Added"
 															style={{ fontSize: 14 }}
-															onChange={onRadioChange}
+															onChange={(e) =>
+																onRadioChange(e, item.id)
+															}
 														/>
 														<FormControlLabel
 															checked={
@@ -110,7 +114,9 @@ const Employees = () => {
 															value="In-Check"
 															control={<Radio />}
 															label="In-Check"
-															onChange={onRadioChange}
+															onChange={(e) =>
+																onRadioChange(e, item.id)
+															}
 														/>
 														<FormControlLabel
 															checked={
@@ -119,7 +125,9 @@ const Employees = () => {
 															value="Approved"
 															control={<Radio />}
 															label="Approved"
-															onChange={onRadioChange}
+															onChange={(e) =>
+																onRadioChange(e, item.id)
+															}
 														/>
 														<FormControlLabel
 															checked={
@@ -128,7 +136,9 @@ const Employees = () => {
 															value="Active"
 															control={<Radio />}
 															label="Active"
-															onChange={onRadioChange}
+															onChange={(e) =>
+																onRadioChange(e, item.id)
+															}
 														/>
 														<FormControlLabel
 															checked={
@@ -137,7 +147,9 @@ const Employees = () => {
 															value="In-Active"
 															control={<Radio />}
 															label="In-Active"
-															onChange={onRadioChange}
+															onChange={(e) =>
+																onRadioChange(e, item.id)
+															}
 														/>
 													</RadioGroup>
 												</FormControl>

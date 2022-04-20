@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button/Button";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { createEmployeeAction } from "../../actions";
+import { createEmployee } from "../../actions";
 import { useNavigate } from "react-router-dom";
 
 const AddEmployee = () => {
@@ -25,7 +25,7 @@ const AddEmployee = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(createEmployeeAction(newEmployee));
+		dispatch(createEmployee(newEmployee));
 		navigate("/");
 	};
 	return (
