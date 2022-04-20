@@ -1,15 +1,6 @@
 import axios from "axios";
 import * as employeesActions from "../constants";
 
-export const CREATE_EMPLOYEE_ACTION =
-	"CREATE_EMPLOYEE_ACTION";
-
-export const UPDATE_EMPLOYEE_STATUS_ACTION =
-	"UPDATE_EMPLOYEE_STATUS_ACTION";
-
-export const CONFIRM_UPDATE_EMPLOYEE_STATUS_ACTION =
-	"CONFIRM_UPDATE_EMPLOYEE_STATUS_ACTION";
-
 const startFetching = () => {
 	return {
 		type: employeesActions.default.EMPLOYEES.LOAD,
@@ -28,6 +19,9 @@ const fetchingFailed = (error) => {
 		error: error,
 	};
 };
+
+/* SERVICES */
+/* ---------------------------------------------------*/
 
 export const requestEmployees = () => async (dispatch) => {
 	dispatch(startFetching());
@@ -55,6 +49,9 @@ export function updateEmployeeStatus(status, employeeId) {
 	);
 }
 
+/* SERVICES */
+/* ---------------------------------------------------*/
+
 export function createEmployeeAction(employeeData) {
 	return (dispatch) => {
 		createEmployee(employeeData).then((response) => {
@@ -65,7 +62,8 @@ export function createEmployeeAction(employeeData) {
 
 export function confirmUpdateEmployeeStatusAction(status) {
 	return {
-		type: CONFIRM_UPDATE_EMPLOYEE_STATUS_ACTION,
+		type: employeesActions.default
+			.CONFIRM_UPDATE_EMPLOYEE_STATUS_ACTION,
 		payload: status,
 	};
 }

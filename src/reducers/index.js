@@ -38,6 +38,14 @@ const fetchingFailed = (state, action) => {
 	});
 };
 
+const createEmployeeAction = (state, action) => {
+	const employee = [...state.employeesList];
+	employee.push(action.payload);
+	return updateState(state, {
+		employeesList: employee,
+	});
+};
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actions.EMPLOYEES.LOAD:
@@ -46,7 +54,8 @@ const reducer = (state = initialState, action) => {
 			return fetchingSuccess(state, action);
 		case actions.EMPLOYEES.LOAD_FAILED:
 			return fetchingFailed(state, action);
-
+		case actions.CREATE_EMPLOYEE_ACTION:
+			return createEmployeeAction(state, action);
 		default:
 			return state;
 	}
