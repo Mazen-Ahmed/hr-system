@@ -5,7 +5,7 @@
       "lastName": "Klyian",
       "email": "romin.k.irani@gmail.com",
       "jobTitleName": "Developer",
-      "status": "Added",
+      "status": "Active",
       "id": 1
     },
     {
@@ -21,7 +21,7 @@
       "lastName": "Hanks",
       "email": "tomhanks@gmail.com",
       "jobTitleName": "Developer",
-      "status": "In-Check",
+      "status": "Added",
       "id": 3
     },
     {
@@ -29,7 +29,7 @@
       "lastName": "Hamada",
       "email": "Hamada",
       "jobTitleName": "Hamada",
-      "status": "Active",
+      "status": "Added",
       "id": 4
     },
     {
@@ -47,6 +47,14 @@
       "jobTitleName": "",
       "status": "In-Check",
       "id": 6
+    },
+    {
+      "firstName": "wdqw",
+      "lastName": "ahmed",
+      "email": "1004732184@ensaf.sa",
+      "jobTitleName": "qdqwdwq",
+      "status": "Added",
+      "id": 7
     }
   ]
 }
