@@ -1,74 +1,77 @@
-import * as employeesActions from "../constants";
-const actions = employeesActions.default;
+import * as employeesActions from '../constants'
+const actions = employeesActions.default
 
 const updateState = (oldState, newState) => {
-	return {
-		...oldState,
-		...newState,
-	};
-};
+  return {
+    ...oldState,
+    ...newState,
+  }
+}
 
 const initialState = {
-	employeesList: [],
-	isLoading: false,
-	isError: false,
-};
+  employeesList: [],
+  isLoading: false,
+  isError: false,
+}
 
 const startFetching = (state, action) => {
-	return updateState(state, {
-		employeesList: [],
-		isLoading: true,
-		isError: false,
-	});
-};
+  return updateState(state, {
+    employeesList: [],
+    isLoading: true,
+    isError: false,
+  })
+}
 
 const fetchingSuccess = (state, action) => {
-	return updateState(state, {
-		isLoading: false,
-		employeesList: action.employees,
-		isError: false,
-	});
-};
+  return updateState(state, {
+    isLoading: false,
+    employeesList: action.employees,
+    isError: false,
+  })
+}
 
 const fetchingFailed = (state, action) => {
-	return updateState(state, {
-		isLoading: false,
-		employeesList: [],
-		isError: action.error,
-	});
-};
+  return updateState(state, {
+    isLoading: false,
+    employeesList: [],
+    isError: action.error,
+  })
+}
 
 const createEmployeeAction = (state, action) => {
-	const employee = [...state.employeesList];
-	employee.push(action.payload);
-	return updateState(state, {
-		employeesList: employee,
-	});
-};
+  const employee = [...state.employeesList]
+  employee.push(action.payload)
+  return updateState(state, {
+    employeesList: employee,
+  })
+}
 
 const updateEmployeeStatusAction = (state, action) => {
-	return updateState(state, {
-		employeesList: (state.employeesList[
-			action.payload.id - 1
-		].status = action.payload.status),
-	});
-};
+  const newEmp = state.employeesList.map((emp) =>
+    emp.id === action.payload.id
+      ? { ...emp, status: action.payload.status }
+      : emp,
+  )
+  return updateState(state, {
+    employeesList: newEmp,
+  })
+}
 
 const reducer = (state = initialState, action) => {
-	switch (action.type) {
-		case actions.EMPLOYEES.LOAD:
-			return startFetching(state, action);
-		case actions.EMPLOYEES.LOAD_SUCCESS:
-			return fetchingSuccess(state, action);
-		case actions.EMPLOYEES.LOAD_FAILED:
-			return fetchingFailed(state, action);
-		case actions.CREATE_EMPLOYEE_ACTION:
-			return createEmployeeAction(state, action);
-		case actions.CONFIRM_UPDATE_EMPLOYEE_STATUS_ACTION:
-			return updateEmployeeStatusAction;
-		default:
-			return state;
-	}
-};
+  switch (action.type) {
+    case actions.EMPLOYEES.LOAD:
+      return startFetching(state, action)
+    case actions.EMPLOYEES.LOAD_SUCCESS:
+      return fetchingSuccess(state, action)
+    case actions.EMPLOYEES.LOAD_FAILED:
+      return fetchingFailed(state, action)
+    case actions.CREATE_EMPLOYEE_ACTION:
+      return createEmployeeAction(state, action)
+    case actions.CONFIRM_UPDATE_EMPLOYEE_STATUS_ACTION:
+      return updateEmployeeStatusAction(state, action)
+    default:
+      return state
+  }
+}
 
-export default reducer;
+export default reducer
