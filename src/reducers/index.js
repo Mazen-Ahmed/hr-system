@@ -47,10 +47,10 @@ const createEmployeeAction = (state, action) => {
 }
 
 const updateEmployeeStatusAction = (state, action) => {
-  const newEmp = state.employeesList.map((emp) =>
-    emp.id === action.payload.id
-      ? { ...emp, status: action.payload.status }
-      : emp,
+  const newEmp = state.employeesList.map((emps) =>
+    emps.id === action.payload.id
+      ? { ...emps, status: action.payload.status }
+      : emps,
   )
   return updateState(state, {
     employeesList: newEmp,
